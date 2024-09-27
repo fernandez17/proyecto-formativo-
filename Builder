@@ -1,0 +1,132 @@
+void main() {
+  Builder m = Material();
+  Director d = new Director(m);
+  d.make("vis");
+  Casa c = m.getcasa();
+  print(c);
+}
+
+class Director{
+  Builder _builder;
+  Director(this._builder){}
+  
+  void make(String tipo){
+    _builder.reset();
+    if(tipo == ("vis")){
+        _builder.hcimiento();
+        _builder.hparedes();
+        _builder.hpuertas(10);
+    }else{
+        _builder.hcimiento();
+        _builder.hparedes();
+        _builder.hpuertas(10);
+        _builder.hpiscinas(2);
+        _builder.hgarajes(2);
+    }
+  }
+}
+
+abstract class Builder{
+  void reset();
+  void hcimiento();
+  void hparedes();
+  void hpuertas(int n);
+  void hpiscinas(int n);
+  void hgarajes(int n);
+  Casa getcasa();
+}
+
+class Casa{
+  bool cimiento = false;
+  bool paredes = false;
+  int puertas = 0;
+  int piscinas = 0;
+  int garajes = 0;
+  
+  @override
+  String toString(){
+    return ("cimiento: $cimiento, paredes: $paredes, puertas: $puertas, piscinas: $piscinas, garajes: $garajes");
+  }
+}
+
+class Material implements Builder{
+  Casa _result = new Casa();
+
+  @override
+  void reset() {
+    this._result = new Casa();
+  }
+  
+
+  @override
+  void hcimiento(){
+    _result.cimiento = false;
+  }
+
+  @override
+  void hparedes() {
+    _result.paredes = false;
+  }
+  
+    @override
+  void hpuertas(int n) {
+    _result.puertas = n;
+  }
+
+  @override
+  void hpiscinas(int n) {
+    _result.piscinas = n;
+  }
+ 
+    @override
+  void hgarajes(int n) {
+    _result.garajes = n;
+  }
+
+    @override
+  Casa getcasa() {
+    return _result;
+  }
+
+}
+
+class Madera implements Builder{
+  Casa _result = new Casa();
+
+  @override
+  void reset() {
+    this._result = new Casa();
+  }
+  
+
+  @override
+  void hcimiento(){
+    _result.cimiento = false;
+  }
+
+  @override
+  void hparedes() {
+    _result.paredes = false;
+  }
+  
+    @override
+  void hpuertas(int n) {
+    _result.puertas = n;
+  }
+
+  @override
+  void hpiscinas(int n) {
+    _result.piscinas = n;
+  }
+ 
+    @override
+  void hgarajes(int n) {
+    _result.garajes = n;
+  }
+
+    @override
+  Casa getcasa() {
+    return _result;
+  }
+
+}
